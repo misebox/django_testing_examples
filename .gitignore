@@ -1,0 +1,15 @@
+# Python
+*.py[cdo]
+__pycache__
+
+
+# editor
+.vscode/
+
+# environment
+.venv/
+.envrc
+
+# this project
+tmp/
+db.sqlite3
