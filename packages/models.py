@@ -13,24 +13,24 @@ class Package(models.Model):
     since_date = models.DateField()
     pub_date = models.DateTimeField('date published')
     lang = models.ForeignKey(
-        ProgrammingLanguage,
-        related_name='packages',
+        'ProgrammingLanguage',
+        related_name='package_set',
         on_delete=models.PROTECT
     )
-    combo_set = models.ManyToManyField(
-        'combo',
-        through='composition',
-        through_fields=('package', 'combo'),
-        related_name='package_set',
+
+
+class PackageCombo(models.Model):
+    name = models.CharField(max_length=100)
+    description = models.TextField()
+    package_set = models.ManyToManyField(
+        'package',
+        through='PackageComposition',
+        through_fields=('package_combo', 'package'),
+        related_name='package_combo_set'
     )
 
 
-class Combo(models.Model):
-    name = models.CharField(max_length=100)
-    description = models.TextField()
-
-
-class Composition(models.Model):
+class PackageComposition(models.Model):
     description = models.TextField(null=True, blank=True)
-    package = models.ForeignKey(Package, on_delete=models.PROTECT)
-    combo = models.ForeignKey(Combo, on_delete=models.CASCADE)
+    package = models.ForeignKey('Package', on_delete=models.PROTECT)
+    package_combo = models.ForeignKey(PackageCombo, on_delete=models.CASCADE)
