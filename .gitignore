@@ -12,4 +12,4 @@ __pycache__
 
 # this project
 tmp/
-db.sqlite3
+*.sqlite3

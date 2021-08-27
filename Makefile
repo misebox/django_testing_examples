@@ -1,6 +1,9 @@
 .PHONY: all
 all:
 
+libs:
+	pip install -r requirements.txt
+
 requirements.txt: requirements.in
 	$(MAKE) req
 
