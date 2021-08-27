@@ -1,0 +1,56 @@
+{% extends 'common/base.html' %}
+
+
+{% block title %}
+  Package Combos
+{% endblock %}
+
+{% block content %}
+  <div class="rows-container">
+    {% for combo in combos %}
+
+    <div class="row package-combo cols-container">
+
+      {# PackageCombo row #}
+      <div class="name">
+        {{ combo.name }}
+      </div>
+      <div class="description">
+        {{ combo.description }}
+      </div>
+      <div class="package-list rows-container">
+        {% for package in combo.package_set %}
+
+          {# Package row #}
+          <div class="row cols-container package">
+            <div class="name">
+              {{ package.name }}
+            </div>
+            <div class="ref_name">
+              {{ package.ref_name }}
+            </div>
+            <div class="description">
+              {{ package.description }}
+            </div>
+            <div class="repo_url">
+              {{ package.repo_url }}
+            </div>
+            <div class="since_date">
+              {{ package.since_date }}
+            </div>
+            <div class="pub_date">
+              {{ package.pub_date }}
+            </div>
+            <div class="lang">
+              {{ package.lang }}
+            </div>
+            {{ combo }}
+          </div>
+
+      {% endfor %}
+      </div>
+    </div>
+
+    {% endfor %}
+  </div>
+{% endblock %}
