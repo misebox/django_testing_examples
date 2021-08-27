@@ -1,56 +1,72 @@
 {% extends 'common/base.html' %}
+{% load static %}
 
 
 {% block title %}
   Package Combos
 {% endblock %}
 
+{% block partial_style %}
+  <link rel="stylesheet" type="text/css" href="{% static 'packages/style.css' %}">
+{% endblock %}
+
 {% block content %}
-  <div class="rows-container">
+  <h1>Package Combos</h1>
+  {% if combos %}
+
+  <div class="package-combo-container">
     {% for combo in combos %}
 
-    <div class="row package-combo cols-container">
-
-      {# PackageCombo row #}
+    {# PackageCombo row #}
+    <div class="package-combo">
       <div class="name">
         {{ combo.name }}
       </div>
       <div class="description">
-        {{ combo.description }}
+        {{ combo.description | linebreaksbr }}
       </div>
-      <div class="package-list rows-container">
-        {% for package in combo.package_set %}
+      <div class="package-container">
+        {% for package in combo.packages %}
 
-          {# Package row #}
-          <div class="row cols-container package">
-            <div class="name">
-              {{ package.name }}
-            </div>
-            <div class="ref_name">
-              {{ package.ref_name }}
-            </div>
-            <div class="description">
-              {{ package.description }}
-            </div>
-            <div class="repo_url">
-              {{ package.repo_url }}
-            </div>
-            <div class="since_date">
-              {{ package.since_date }}
-            </div>
-            <div class="pub_date">
-              {{ package.pub_date }}
-            </div>
-            <div class="lang">
-              {{ package.lang }}
-            </div>
-            {{ combo }}
+        {# Package row #}
+        <div class="package">
+          <div class="name">
+            {{ package.name }}
+          </div>
+          <div class="lang">
+            {{ package.lang.name }}
           </div>
 
-      {% endfor %}
+          {% comment hidden %}
+          <div class="description">
+            {{ package.description }}
+          </div>
+          <div class="repo_url">
+            {{ package.repo_url }}
+          </div>
+          <div class="pub_date">
+            {{ package.pub_date }}
+          </div>
+          <div class="since_date">
+            {{ package.since_date }}
+          </div>
+          {% endcomment %}
+
+        </div>
+        {# End Package row #}
+
+        {% endfor %}
       </div>
     </div>
+    {# End PackageCombo row #}
 
-    {% endfor %}
+  {% endfor %}
+  </div> {# package-combo-container #}
+
+  {% else %}
+  <div class="package-combo-notfound">
+    <div> No package combo found.  </div>
   </div>
+  {% endif %}
+
 {% endblock %}

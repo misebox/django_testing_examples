@@ -4,6 +4,8 @@
     <meta charset="utf-8">
     <title> {% block title %} Example Project {% endblock %} </title>
     <link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}">
+    {% block partial_style %}
+    {% endblock %}
 </head>
 
 <body>

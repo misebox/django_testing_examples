@@ -40,9 +40,9 @@ class PackageCombo(models.Model):
 
 
 class PackageComposition(models.Model):
-    description = models.TextField(null=True, blank=True)
-    package = models.ForeignKey('Package', on_delete=models.PROTECT)
+    package = models.ForeignKey(Package, on_delete=models.PROTECT)
     package_combo = models.ForeignKey(PackageCombo, on_delete=models.CASCADE)
+    description = models.CharField(max_length=100, null=True, blank=True)
 
     def __str__(self):
         return '({}) - ({})'.format(self.package_combo, self.package)
