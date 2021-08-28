@@ -11,9 +11,13 @@ requirements.txt: requirements.in
 req:
 	@docker run --rm -it -v "$(CURDIR):/src" misebox/pip-tools
 
+.PHONY: test
+test: mypy unittest
+
 .PHONY: mypy
 mypy:
 	@mypy .
 
-test:
+.PHONY: unittest
+unittest:
 	@python manage.py test
