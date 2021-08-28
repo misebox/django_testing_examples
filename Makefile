@@ -15,3 +15,5 @@ req:
 mypy:
 	@mypy .
 
+test:
+	@python manage.py test

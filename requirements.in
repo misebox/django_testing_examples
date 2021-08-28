@@ -4,3 +4,4 @@ djantic
 autopep8
 mypy
 django-stubs
+factory_boy
