@@ -42,6 +42,4 @@ class PackageComboSchema(ModelSchema):
 
 
 class ComboPageOut(BaseModel):
-    packages: List[PackageSchema]
     combos: List[PackageComboSchema]
-    langs: List[ProgrammingLanguageSchema]

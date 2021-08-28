@@ -2,7 +2,7 @@ from django.http import HttpResponse
 from django.http import HttpRequest
 from django.shortcuts import render
 
-import packages.usecases
+from packages.usecases import PackageUsecase
 
 
 def index(request):
@@ -10,5 +10,5 @@ def index(request):
 
 
 def get_combo_page(request: HttpRequest):
-    context = packages.usecases.combo_page_context()
+    context = PackageUsecase.get_combo_page_context()
     return render(request, "packages/combo_page.html", context.dict())
