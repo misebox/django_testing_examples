@@ -2,3 +2,5 @@ django
 pydantic
 djantic
 autopep8
+mypy
+django-stubs

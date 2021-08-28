@@ -2,11 +2,16 @@
 all:
 
 libs:
-	pip install -r requirements.txt
+	@pip install -r requirements.txt
 
 requirements.txt: requirements.in
-	$(MAKE) req
+	@$(MAKE) req
 
 .PHONY: requirements
 req:
-	docker run --rm -it -v "$(CURDIR):/src" misebox/pip-tools
+	@docker run --rm -it -v "$(CURDIR):/src" misebox/pip-tools
+
+.PHONY: mypy
+mypy:
+	@mypy .
+
