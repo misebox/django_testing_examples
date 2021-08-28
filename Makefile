@@ -20,4 +20,8 @@ mypy:
 
 .PHONY: unittest
 unittest:
-	@python manage.py test
+	@python manage.py test  # --parallel
+
+.PHONY: dev
+dev:
+	@python manage.py runserver
