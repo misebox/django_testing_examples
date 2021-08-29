@@ -5,11 +5,11 @@ all: test
 libs:
 	@pip install -r requirements.txt
 
+requirements.txt: requirements.in
+	@$(MAKE) req
+
 ## req:  compile requirements.in into requirements.txt
 req:
-	@$(MAKE) reqirements.txt
-
-requirements.txt: requirements.in
 	@docker run --rm -it -v "$(CURDIR):/src" misebox/pip-tools
 
 ## test: mypy and unittest
