@@ -13,3 +13,5 @@ __pycache__
 # this project
 tmp/
 *.sqlite3
+
+.*
