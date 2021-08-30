@@ -1,0 +1,41 @@
+{% extends 'common/base.html' %}
+{% load static %}
+
+
+{% block title %}
+  Profile
+{% endblock %}
+
+{% block partial_style %}
+  <link rel="stylesheet" type="text/css" href="{% static 'users/style.css' %}">
+{% endblock %}
+
+{% block content %}
+<h1>Profile</h1>
+<div class="profile">
+    <div class="field">
+        <div>username</div>
+        <div>{{user.username}}</div>
+    </div>
+    <div class="field">
+        <div>email</div>
+        <div>{{user.email}}</div>
+    </div>
+    <div class="field">
+        <div>First Name</div>
+        <div>{{user.first_name}}</div>
+    </div>
+    <div class="field">
+        <div>Last Name</div>
+        <div>{{user.last_name}}</div>
+    </div>
+    <div class="field">
+        <div>Date Joined</div>
+        <div>{{user.date_joined | date:"Y-m-d\TH:i:s(T)"}}</div>
+    </div>
+    <div class="field">
+        <div>Last Login</div>
+        <div>{{user.last_login | date:"Y-m-d\TH:i:s(T)"}}</div>
+    </div>
+</div>
+{% endblock %}

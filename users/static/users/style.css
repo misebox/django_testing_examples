@@ -1,0 +1,18 @@
+.profile {
+    display: flex;
+    flex-direction: column;
+    width: 35rem;
+}
+.profile .field {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+.profile .field > * {
+    width: 50%;
+    text-align: center;
+    background-color: #f7f7f7;
+    padding: 2px;
+    margin: 0.25rem 0.5rem;
+    border-radius: 4px;
+}

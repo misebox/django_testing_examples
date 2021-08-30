@@ -27,20 +27,59 @@ SECRET_KEY = os.environ['DJANGO_SECRET_KEY']
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS: List[str] = []
+ALLOWED_HOSTS: List[str] = [
+    os.environ['DJANGO_HOST']
+]
 
 
 # Application definition
+AUTHENTICATION_BACKENDS = [
+    'django.contrib.auth.backends.ModelBackend',
+    'allauth.account.auth_backends.AuthenticationBackend',
+]
 
 INSTALLED_APPS = [
+    # django
     'django.contrib.admin',
-    'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
-    'django.contrib.messages',
     'django.contrib.staticfiles',
+
+    # The following apps are required by allauth
+    'django.contrib.auth',
+    'django.contrib.messages',
+    'django.contrib.sites',
+
+    # allauth
+    'allauth',
+    'allauth.account',
+    'allauth.socialaccount',
+
+    # custom apps
     'packages.apps.PackagesConfig',
+    'users.apps.UsersConfig',
 ]
+
+SITE_ID = 1
+
+# AUTH
+LOGIN_REDIRECT_URL = '/users/'
+# Provider specific settings
+# SOCIALACCOUNT_PROVIDERS = {
+#    'auth0': {
+#        'AUTH0_URL': 'https://' + os.environ['AUTH0_DOMAIN'],
+#        'APP': {
+#            'client_id': os.environ['AUTH0_CLIENT_ID'],
+#            'secret': os.environ['AUTH0_SECRET'],
+#            'key': os.environ['AUTH0_KEY']
+#        }
+#    }
+# }
+
+
+if DEBUG:
+    EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
